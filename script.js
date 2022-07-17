@@ -1,9 +1,10 @@
 let myLibrary = [];
-let nameInput = document.querySelector("#book-title");
-let titleInput = document.querySelector("#book-author");
-let pagesInput = document.querySelector("#pages");
-let readInput = document.querySelector("#read");
-let submitInput = document.querySelector("#submit");
+const nameInput = document.querySelector("#input-title");
+const titleInput = document.querySelector("#input-author");
+const pagesInput = document.querySelector("#input-pages");
+const readInput = document.querySelector("#input-read");
+const submitInput = document.querySelector("#submit");
+const bookContainer = document.querySelector(".book-container")
 
 function Book(title, author, pages, read) {
     this.title = title,
@@ -13,20 +14,46 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.info = () => title + " by " + author + ", " + pages + ", " +
-(read ? "have read" : "not read yet");
+    (read ? "have read" : "not read yet");
 
 function addBookToLibrary() {
-    myLibrary.push(new Book(nameInput.value, titleInput.value,
-        pagesInput.value, readInput.checked));
-    console.log(myLibrary);
+    let book = new Book(nameInput.value, titleInput.value,
+        pagesInput.value, readInput.checked);
+    myLibrary.push(book);
+    return book;
 }
 
 submitInput.addEventListener("click", () => {
-    addBookToLibrary();
+    generateBookCard(addBookToLibrary());
 });
 
 // TEMP
 for (let i = 0; i < 3; i++) {
     myLibrary.push(new Book("title-" + i, "author-" + i, Math.floor(Math.random() * (1000 - 100) + 100), true));
 }
-console.log(myLibrary);
+
+function displayBooks() {
+    myLibrary.forEach(value => {
+        generateBookCard(value);
+    })
+}
+
+function generateBookCard(book) {
+    const card = document.createElement("div")
+    card.classList.add("card");
+    const title = document.createElement("p")
+    title.textContent = book.title;
+    const author = document.createElement("p")
+    author.textContent = book.author;
+    const pages = document.createElement("p")
+    pages.textContent = book.pages;
+    const read = document.createElement("p")
+    read.textContent = book.read;
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(read);
+    bookContainer.appendChild(card);
+}
+
+displayBooks();

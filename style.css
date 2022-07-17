@@ -1,0 +1,8 @@
+.book-container {
+    display: grid;
+    gap: 10px;
+}
+
+.card {
+    background-color: orange;
+}
