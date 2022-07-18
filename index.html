@@ -12,7 +12,6 @@
 
 <body>
     <h1>Library</h1>
-
     <div class="book-container">
         <button type="button" id="add-book">Add Book</button>
         <div>
@@ -30,8 +29,11 @@
                     <input type="number" id="input-pages" name="input-pages" placeholder="Pages" required>
                 </div>
                 <div class="form-row">
-                    <label for="input-read">Read:</label>
-                    <input type="checkbox" id="input-read" name="input-read" value="is-read">
+                    <label for="read">Mark as read:</label>
+                    <div class="toggle-pill-bw">
+                        <input type="checkbox" id="input-read" name="is-read">
+                        <label for="input-read"></label>
+                    </div>
                 </div>
                 <button id="submit">Submit</button>
             </form>

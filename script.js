@@ -12,17 +12,14 @@ function Book(title, author, pages, read) {
     this.title = title,
         this.author = author,
         this.pages = pages,
-        this.read = read
-    this.index = "book-" + (Object.keys(myLibrary).length === 0
-        ? 1
-        : parseFloat(Object.keys(myLibrary)[Object.keys(myLibrary).length - 1]
-            .split("-")[1]) + 1);
+        this.read = read,
+        this.index = "book-" + (Object.keys(myLibrary).length === 0
+            ? 1
+            : parseFloat(Object.keys(myLibrary)[Object.keys(myLibrary).length - 1]
+                .split("-")[1]) + 1);
 }
 
-Book.prototype.info = () => title + " by " + author + ", " + pages + ", " +
-    (read ? "have read" : "not read yet");
-
-Book.prototype.changeRead = () => read = !read;
+Book.prototype.toggleRead = function () { this.read = !this.read };
 
 function addBookToLibrary() {
     let book = new Book(nameInput.value, titleInput.value,
@@ -57,7 +54,6 @@ function generateBookCard(book) {
         "Title: ": book.title,
         "Author: ": book.author,
         "Pages: ": book.pages,
-        "Read: ": book.read,
     };
     const card = document.createElement("div")
     card.classList.add("card");
@@ -73,6 +69,28 @@ function generateBookCard(book) {
         row.appendChild(value);
         card.appendChild(row);
     }
+    const row = document.createElement("div");
+    row.classList.add("card-row");
+    const property = document.createElement("label");
+    property.htmlFor = "read-" + book.index.split("-")[1];
+    property.textContent = "Mark as read:";
+    const checkBoxContainer = document.createElement("div");
+    checkBoxContainer.classList.add("toggle-pill-bw");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = "read-" + book.index.split("-")[1];
+    checkbox.name = "read";
+    if (book.read) {
+        checkbox.checked = true;
+    }
+    checkbox.addEventListener("change", function () { myLibrary[book.index].toggleRead(); });
+    const checkboxLabel = document.createElement("label");
+    checkboxLabel.htmlFor = "read-" + book.index.split("-")[1];
+    checkBoxContainer.appendChild(checkbox);
+    checkBoxContainer.appendChild(checkboxLabel);
+    row.appendChild(property);
+    row.appendChild(checkBoxContainer);
+    card.appendChild(row);
     const removeBook = document.createElement("button");
     removeBook.setAttribute("type", "button");
     removeBook.textContent = "Remove Book";
