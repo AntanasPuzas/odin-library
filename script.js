@@ -13,7 +13,7 @@ function Book(title, author, pages, read) {
         this.author = author,
         this.pages = pages,
         this.read = read
-        this.index = "Book-" + (Object.keys(myLibrary).length + 1);
+    this.index = "book-" + (Object.keys(myLibrary).length + 1);
 }
 
 Book.prototype.info = () => title + " by " + author + ", " + pages + ", " +
@@ -37,7 +37,7 @@ submitInput.addEventListener("click", () => {
 // TEMP
 for (let i = 0; i < 3; i++) {
     let book = new Book("title-" + i, "author-" + i,
-    Math.floor(Math.random() * (1000 - 100) + 100), true)
+        Math.floor(Math.random() * (1000 - 100) + 100), true)
     myLibrary[book.index] = book;
 }
 
@@ -72,7 +72,10 @@ function generateBookCard(book) {
     const removeBook = document.createElement("button");
     removeBook.setAttribute("type", "button");
     removeBook.textContent = "Remove Book";
-    removeBook.addEventListener("click", () => { }); // Implement this
+    removeBook.addEventListener("click", () => { 
+        document.querySelector("#" + book.index).remove();
+        delete myLibrary[book.index];
+    });
     card.appendChild(removeBook);
     addBookButton.before(card);
 }
