@@ -13,11 +13,16 @@ function Book(title, author, pages, read) {
         this.author = author,
         this.pages = pages,
         this.read = read
-    this.index = "book-" + (Object.keys(myLibrary).length + 1);
+    this.index = "book-" + (Object.keys(myLibrary).length === 0
+        ? 1
+        : parseFloat(Object.keys(myLibrary)[Object.keys(myLibrary).length - 1]
+            .split("-")[1]) + 1);
 }
 
 Book.prototype.info = () => title + " by " + author + ", " + pages + ", " +
     (read ? "have read" : "not read yet");
+
+Book.prototype.changeRead = () => read = !read;
 
 function addBookToLibrary() {
     let book = new Book(nameInput.value, titleInput.value,
@@ -53,11 +58,10 @@ function generateBookCard(book) {
         "Author: ": book.author,
         "Pages: ": book.pages,
         "Read: ": book.read,
-        "index": book.index
     };
     const card = document.createElement("div")
     card.classList.add("card");
-    card.id = bookInfo.index;
+    card.id = book.index;
     for (const key in bookInfo) {
         const row = document.createElement("div");
         row.classList.add("card-row");
@@ -72,9 +76,10 @@ function generateBookCard(book) {
     const removeBook = document.createElement("button");
     removeBook.setAttribute("type", "button");
     removeBook.textContent = "Remove Book";
-    removeBook.addEventListener("click", () => { 
+    removeBook.addEventListener("click", () => {
         document.querySelector("#" + book.index).remove();
         delete myLibrary[book.index];
+        console.log(myLibrary);
     });
     card.appendChild(removeBook);
     addBookButton.before(card);
