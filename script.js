@@ -27,7 +27,10 @@ function addBookToLibrary() {
 
 submitInput.addEventListener("click", () => {
     generateBookCard(addBookToLibrary());
-    form.style.display = "none";
+    form.classList.remove("form-show");
+    form.classList.remove("card");
+    addBookButton.style.display = "block";
+    console.log(myLibrary);
 });
 
 // TEMP
@@ -72,4 +75,8 @@ function generateBookCard(book) {
 
 displayBooks();
 
-addBookButton.addEventListener("click", () => form.style.display = "block");
+addBookButton.addEventListener("click", () => {
+    form.classList.add("form-show");
+    form.classList.add("card");
+    addBookButton.style.display = "none";
+});

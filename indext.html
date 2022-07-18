@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,29 +9,34 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <h1>Library</h1>
-    <form action="" method="set" class="book-form">
-        <div class="form-row">
-            <label for="input-title">Book Title:</label>
-            <input type="text" id="input-title" name="input-title" required>
-        </div>
-        <div class="form-row">
-            <label for="input-author">Book Author:</label>
-            <input type="text" id="input-author" name="input-author" required>
-        </div>
-        <div class="form-row">
-            <label for="input-pages">Pages:</label>
-            <input type="number" id="input-pages" name="input-pages" required>
-        </div>
-        <div class="form-row">
-            <label for="input-read">Read:</label>
-            <input type="checkbox" id="input-read" name="input-read" value="is-read">
-        </div>
-        <button type="button" id="submit">Submit</button>
-    </form>
+
     <div class="book-container">
         <button type="button" id="add-book">Add Book</button>
+        <div>
+            <form action="" method="set" class="book-form">
+                <div class="form-row">
+                    <label for="input-title">Book Title:</label>
+                    <input type="text" id="input-title" name="input-title" placeholder="Title" required>
+                </div>
+                <div class="form-row">
+                    <label for="input-author">Book Author:</label>
+                    <input type="text" id="input-author" name="input-author" placeholder="Author" required>
+                </div>
+                <div class="form-row">
+                    <label for="input-pages">Pages:</label>
+                    <input type="number" id="input-pages" name="input-pages" placeholder="Pages" required>
+                </div>
+                <div class="form-row">
+                    <label for="input-read">Read:</label>
+                    <input type="checkbox" id="input-read" name="input-read" value="is-read">
+                </div>
+                <button id="submit">Submit</button>
+            </form>
+        </div>
     </div>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -8,28 +9,56 @@ body {
     color: white;
 }
 
-form {
-    display: none;
+h1 {
+    margin: 25px 0 0 25px;
 }
 
 .book-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
     gap: 10px;
     background-color: black;
     padding: 25px;
 }
 
 .card {
-    background-color: orange;
+    background-color: #515151;
     padding: 15px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 12px;
 }
 
 .card-row {
     display: flex;
     justify-content: space-between;
+}
+
+form {
+    display: none;
+    height: 100%;
+}
+
+.form-show {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+form>div:nth-child(-n+3)>label {
+    display: none;
+}
+
+form input[type=text],
+form input[type=number] {
+    width: 100%;
 }
