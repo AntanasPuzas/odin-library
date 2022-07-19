@@ -1,4 +1,3 @@
-let myLibrary = {};
 const nameInput = document.querySelector("#input-title");
 const titleInput = document.querySelector("#input-author");
 const pagesInput = document.querySelector("#input-pages");
@@ -8,18 +7,22 @@ const bookContainer = document.querySelector(".book-container")
 const addBookButton = document.querySelector("#add-book");
 const form = document.querySelector(".book-form");
 
-function Book(title, author, pages, read) {
-    this.title = title,
-        this.author = author,
-        this.pages = pages,
-        this.read = read,
+let myLibrary = {};
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
         this.index = "book-" + (Object.keys(myLibrary).length === 0
             ? 1
             : parseFloat(Object.keys(myLibrary)[Object.keys(myLibrary).length - 1]
                 .split("-")[1]) + 1);
-}
+    }
 
-Book.prototype.toggleRead = function () { this.read = !this.read };
+    toggleRead = () => this.read = !this.read;
+}
 
 function addBookToLibrary() {
     let book = new Book(nameInput.value, titleInput.value,
